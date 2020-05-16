@@ -67,7 +67,8 @@ namespace SortVisualizer
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            iSortInterface se = new SortBubble();
+            se.doSort(mainArray, g, panel1.Height);
         }
     }
 }
