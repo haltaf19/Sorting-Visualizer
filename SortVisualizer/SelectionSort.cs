@@ -3,48 +3,51 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
-
+using System.Threading.Tasks;
 
 namespace SortVisualizer
 {
-    class BubbleSort : SortInterface
+    class SelectionSort : SortInterface
     {
-  
         private int[] mainArray;
         private Graphics g;
         private int MaxVal; // Max Val of bar Height
         Brush RedBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
-        public BubbleSort(int[] mainArray, Graphics g, int MaxVal)
+        public SelectionSort(int[] mainArray, Graphics g, int MaxVal)
         {
             this.mainArray = mainArray;
             this.g = g;
             this.MaxVal = MaxVal;
         }
 
-
-        public void nextStep()
+        public bool isSorted()
         {
+
             for (int i = 0; i < mainArray.Count() - 1; i++)
             {
                 if (mainArray[i] > mainArray[i + 1])
                 {
-                    swap(i, i + 1);
+                    return false;
                 }
             }
+            return true;
         }
-          
 
-        private void swap(int i, int v)
+        public void nextStep()
         {
-            int temp = mainArray[i];
-            mainArray[i] = mainArray[i + 1];
-            mainArray[i + 1] = temp;
-
-            drawBar(i, mainArray[i]);
-            drawBar(v, mainArray[v]);
+            for (int i = 0; i < mainArray.Count(); i++)
+            {
+                int min = FindMin(mainArray, i);
+                int temp = mainArray[i];
+                mainArray[i] = mainArray[min];
+                drawBar(i, mainArray[min]);
+                System.Threading.Thread.Sleep(5);
+                mainArray[min] = temp;
+                drawBar(min, temp);
+                System.Threading.Thread.Sleep(5);
+            }
         }
 
         private void drawBar(int position, int height)
@@ -54,21 +57,25 @@ namespace SortVisualizer
             g.FillRectangle(RedBrush, position, MaxVal - mainArray[position], 1, MaxVal);
         }
 
-        public bool isSorted()
+        private int FindMin(int[] mainArray, int a)
         {
-            for (int i = 0; i < mainArray.Count() - 1; i++)
+            int retloc = a;
+            int voi = mainArray[a];
+            for (int i = a + 1; i < mainArray.Count(); i++)
             {
-                if(mainArray[i] > mainArray[i + 1])
+                if (mainArray[i] < voi)
                 {
-                    return false;
-                } 
+                    retloc = i;
+                    voi = mainArray[i];
+                }
+                
             }
-            return true;
+            return retloc;
         }
 
         public void reDraw()
         {
-            for(int i = 0; i < (mainArray.Count() - 1); i++)
+            for (int i = 0; i < (mainArray.Count() - 1); i++)
             {
                 g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Red), i, MaxVal - mainArray[i], 1, MaxVal);
             }

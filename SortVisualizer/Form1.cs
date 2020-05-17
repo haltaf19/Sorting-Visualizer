@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SortVisualizer
@@ -42,6 +41,7 @@ namespace SortVisualizer
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            if (mainArray == null) button1_Click(null, null);
             w = new BackgroundWorker();
             w.WorkerSupportsCancellation = true;
             w.DoWork += new DoWorkEventHandler(w_DoWork);
