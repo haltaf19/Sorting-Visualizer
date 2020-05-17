@@ -45,6 +45,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Lavender;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -85,21 +86,21 @@
             this.contactMeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.linkedinToolStripMenuItem});
             this.contactMeToolStripMenuItem.Name = "contactMeToolStripMenuItem";
-            this.contactMeToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.contactMeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.contactMeToolStripMenuItem.Text = "Contact Me";
             // 
             // linkedinToolStripMenuItem
             // 
             this.linkedinToolStripMenuItem.Name = "linkedinToolStripMenuItem";
-            this.linkedinToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
-            this.linkedinToolStripMenuItem.Text = "Linkedin";
+            this.linkedinToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.linkedinToolStripMenuItem.Text = "Github";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Salmon;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(24, 52);
+            this.label1.Location = new System.Drawing.Point(36, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(170, 19);
             this.label1.TabIndex = 1;
@@ -109,7 +110,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 98);
+            this.comboBox1.Location = new System.Drawing.Point(24, 108);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(182, 24);
             this.comboBox1.TabIndex = 2;
@@ -135,12 +136,13 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(256, 31);
+            this.panel1.Location = new System.Drawing.Point(239, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1063, 557);
+            this.panel1.Size = new System.Drawing.Size(1080, 588);
             this.panel1.TabIndex = 4;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button1
             // 
@@ -161,18 +163,21 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(24, 218);
+            this.btnPause.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnPause.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPause.Location = new System.Drawing.Point(24, 222);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(209, 28);
             this.btnPause.TabIndex = 6;
             this.btnPause.Text = "Pause / Resume";
-            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.UseVisualStyleBackColor = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1331, 600);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.button1);
@@ -184,6 +189,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
