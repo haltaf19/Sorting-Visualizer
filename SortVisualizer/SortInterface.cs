@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace SortVisualizer
 {
-    interface iSortInterface
+    interface SortInterface
     {
-        void doSort(int[] mainArray, Graphics g, int MaxVal);
+        void nextStep();
+        bool isSorted();
+
+        void reDraw();
     }
 }

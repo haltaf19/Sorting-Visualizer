@@ -4,40 +4,38 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace SortVisualizer
 {
-    class SortBubble : iSortInterface
+    class BubbleSort : SortInterface
     {
-        private bool isSorted = false;
+  
         private int[] mainArray;
         private Graphics g;
-        private int MaxVal;
+        private int MaxVal; // Max Val of bar Height
         Brush RedBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
-
-
-        public void doSort(int[] mainArray, Graphics g, int MaxVal)
+        public BubbleSort(int[] mainArray, Graphics g, int MaxVal)
         {
             this.mainArray = mainArray;
             this.g = g;
             this.MaxVal = MaxVal;
-
-            while (!isSorted)
-            {
-                for(int i = 0; i < mainArray.Count() - 1; i++)
-                {
-                    if(mainArray[i] > mainArray[i + 1])
-                    {
-                        swap(i, i + 1);
-                    }
-                }
-                isSorted = Sorted();
-            }
-            
         }
+
+
+        public void nextStep()
+        {
+            for (int i = 0; i < mainArray.Count() - 1; i++)
+            {
+                if (mainArray[i] > mainArray[i + 1])
+                {
+                    swap(i, i + 1);
+                }
+            }
+        }
+          
 
         private void swap(int i, int v)
         {
@@ -45,15 +43,18 @@ namespace SortVisualizer
             mainArray[i] = mainArray[i + 1];
             mainArray[i + 1] = temp;
 
-            g.FillRectangle(BlackBrush, i, 0, 1, MaxVal);
-            g.FillRectangle(BlackBrush, v, 0, 1, MaxVal);
-
-
-            g.FillRectangle(RedBrush, i, MaxVal - mainArray[i], 1, MaxVal);
-            g.FillRectangle(RedBrush, v, MaxVal - mainArray[v], 1, MaxVal);
+            drawBar(i, mainArray[i]);
+            drawBar(v, mainArray[v]);
         }
 
-        private bool Sorted()
+        private void drawBar(int position, int height)
+        {
+
+            g.FillRectangle(BlackBrush, position, 0, 1, MaxVal);
+            g.FillRectangle(RedBrush, position, MaxVal - mainArray[position], 1, MaxVal);
+        }
+
+        public bool isSorted()
         {
             for (int i = 0; i < mainArray.Count() - 1; i++)
             {
@@ -63,6 +64,14 @@ namespace SortVisualizer
                 } 
             }
             return true;
+        }
+
+        public void reDraw()
+        {
+            for(int i = 0; i < (mainArray.Count() - 1); i++)
+            {
+                g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.White), i, MaxVal - mainArray[i], 1, MaxVal);
+            }
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SortVisualizer
@@ -14,12 +13,43 @@ namespace SortVisualizer
     {
 
         int[] mainArray;
-        Graphics g; 
+        Graphics g;
+        BackgroundWorker w = null;
+        bool isPaused = false;
+
+
+
+
         public Form1()
         {
             InitializeComponent();
+            PopulateDropdown();
         }
 
+
+        // List of Names of classes that implement the Sort Interface
+        private void PopulateDropdown()
+        {
+            List<string> classList = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes()).Where(x => typeof(SortInterface).IsAssignableFrom(x)
+            && !x.IsInterface && !x.IsAbstract).Select(x => x.Name).ToList();
+            classList.Sort();
+            foreach( string entry in classList)
+            {
+                comboBox1.Items.Add(entry);
+            }
+            comboBox1.SelectedIndex = 0;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            w = new BackgroundWorker();
+            w.WorkerSupportsCancellation = true;
+            w.DoWork += new DoWorkEventHandler(w_DoWork);
+            w.RunWorkerAsync(argument: comboBox1.SelectedItem);
+
+        }
+
+     
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close(); 
@@ -65,10 +95,58 @@ namespace SortVisualizer
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            iSortInterface se = new SortBubble();
-            se.doSort(mainArray, g, panel1.Height);
+
+        }
+
+    // Identigy class to get type of algortihm
+        private void w_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker bw = sender as BackgroundWorker;
+            string SortInterfaceName = (string)e.Argument;
+            Type type = Type.GetType("SortVisualizer." + SortInterfaceName);
+            var contructors = type.GetConstructors();
+            try
+            {
+                SortInterface s = (SortInterface)contructors[0].Invoke(new object[] { mainArray, g, panel1.Height });
+                while(!s.isSorted() && (!w.CancellationPending))
+                {
+                    s.nextStep();
+                }
+                
+            }
+            catch(Exception ex)
+            {
+            }
+
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            if (!isPaused)
+            {
+                w.CancelAsync();
+                isPaused = true;
+            }
+            else
+            {
+                if (w.IsBusy) return;
+                int NumEntires = panel1.Width;
+                int MaxVal = panel1.Height;
+                isPaused = false;
+                for (int i = 0; i < NumEntires; i++)
+                {
+                    g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Black), i, 0, 1, MaxVal);
+                    g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Red), i, MaxVal - mainArray[i], 1, MaxVal);
+                }
+                w.RunWorkerAsync(argument: comboBox1.SelectedItem);
+
+
+            }
+
         }
     }
 }

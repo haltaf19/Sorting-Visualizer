@@ -32,13 +32,14 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contactMeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkedinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.contactMeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.linkedinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,11 +63,12 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -78,12 +80,26 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // contactMeToolStripMenuItem
+            // 
+            this.contactMeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.linkedinToolStripMenuItem});
+            this.contactMeToolStripMenuItem.Name = "contactMeToolStripMenuItem";
+            this.contactMeToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.contactMeToolStripMenuItem.Text = "Contact Me";
+            // 
+            // linkedinToolStripMenuItem
+            // 
+            this.linkedinToolStripMenuItem.Name = "linkedinToolStripMenuItem";
+            this.linkedinToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.linkedinToolStripMenuItem.Text = "Linkedin";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Salmon;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(24, 54);
+            this.label1.Location = new System.Drawing.Point(24, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(170, 19);
             this.label1.TabIndex = 1;
@@ -93,7 +109,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 89);
+            this.comboBox1.Location = new System.Drawing.Point(12, 98);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(182, 24);
             this.comboBox1.TabIndex = 2;
@@ -106,7 +122,7 @@
             this.btnReset.FlatAppearance.BorderSize = 3;
             this.btnReset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnReset.Location = new System.Drawing.Point(12, 128);
+            this.btnReset.Location = new System.Drawing.Point(12, 169);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(99, 28);
             this.btnReset.TabIndex = 3;
@@ -126,20 +142,6 @@
             this.panel1.Size = new System.Drawing.Size(1063, 557);
             this.panel1.TabIndex = 4;
             // 
-            // contactMeToolStripMenuItem
-            // 
-            this.contactMeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.linkedinToolStripMenuItem});
-            this.contactMeToolStripMenuItem.Name = "contactMeToolStripMenuItem";
-            this.contactMeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.contactMeToolStripMenuItem.Text = "Contact Me";
-            // 
-            // linkedinToolStripMenuItem
-            // 
-            this.linkedinToolStripMenuItem.Name = "linkedinToolStripMenuItem";
-            this.linkedinToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.linkedinToolStripMenuItem.Text = "Linkedin";
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.GreenYellow;
@@ -149,19 +151,30 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(133, 128);
+            this.button1.Location = new System.Drawing.Point(134, 169);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 28);
+            this.button1.Size = new System.Drawing.Size(99, 28);
             this.button1.TabIndex = 5;
             this.button1.Text = "Start Sort";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(24, 218);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(209, 28);
+            this.btnPause.TabIndex = 6;
+            this.btnPause.Text = "Pause / Resume";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1331, 600);
+            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnReset);
@@ -191,6 +204,7 @@
         private System.Windows.Forms.ToolStripMenuItem contactMeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linkedinToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPause;
     }
 }
 
