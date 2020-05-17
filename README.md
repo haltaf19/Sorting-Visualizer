@@ -9,17 +9,21 @@ The following algorithms have been implemented into the application:
 * Selection Sort
 * Bubble Sort
 
-###Insertion Sort
+### Insertion Sort
+
+![Insertion Sort Visualization](InsertionSort.gif)
+
+
+
+### Selection Sort
+
+
+![Selection Sort Visualization](SelectionSort.gif)
 
 
 
 
-
-###Selection Sort
-
+### Bubble Sort
 
 
-
-
-
-###Bubble Sort
+![Bubble Sort Visualization](BubbleSort.gif)
