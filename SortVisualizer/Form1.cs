@@ -116,7 +116,12 @@ namespace SortVisualizer
                 {
                     s.nextStep();
                 }
-                
+
+                if (s.isSorted())
+                {
+                    s.completeSort();
+                }
+
             }
             catch(Exception ex)
             {

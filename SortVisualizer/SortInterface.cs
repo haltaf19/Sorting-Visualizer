@@ -13,5 +13,7 @@ namespace SortVisualizer
         bool isSorted();
 
         void reDraw();
+
+        void completeSort();
     }
 }

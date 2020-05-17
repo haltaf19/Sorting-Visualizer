@@ -69,5 +69,14 @@ namespace SortVisualizer
                 g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Red), i, MaxVal - mainArray[i], 1, MaxVal);
             }
         }
+        public void completeSort()
+        {
+            for (int i = 0; i < (mainArray.Count() - 1); i++)
+            {
+                g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Blue), i, MaxVal - mainArray[i], 1, MaxVal);
+                System.Threading.Thread.Sleep(1);
+            }
+
+        }
     }
 }
