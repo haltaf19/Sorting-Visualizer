@@ -8,10 +8,16 @@ The following algorithms have been implemented into the application:
 * Insertion Sort
 * Selection Sort
 * Bubble Sort
+* Merge Sort
 
 
 More algorithms to be added in the future! 
 </br>
+### Merge Sort
+
+![Merge Sort Visualization](MergeSort.gif)
+
+
 ### Insertion Sort
 
 ![Insertion Sort Visualization](InsertionSort.gif)
