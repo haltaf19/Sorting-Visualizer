@@ -13,6 +13,7 @@ namespace SortVisualizer
         private Graphics g;
         private int MaxVal; // Max Val of bar Height
         Brush RedBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+        Brush BlueBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
         public SelectionSort(int[] mainArray, Graphics g, int MaxVal)
@@ -54,6 +55,7 @@ namespace SortVisualizer
         {
 
             g.FillRectangle(BlackBrush, position, 0, 1, MaxVal);
+            g.FillRectangle(BlueBrush, position, MaxVal - mainArray[position], 1, MaxVal);
             g.FillRectangle(RedBrush, position, MaxVal - mainArray[position], 1, MaxVal);
         }
 
