@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace SortVisualizer 
+namespace SortVisualizer
 {
-    class MergeSort : SortInterface
+    class QuickSort : SortInterface
     {
         private int[] mainArray;
         private Graphics g;
         private int MaxVal; // Max Val of bar Height
         Brush RedBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         Brush BlackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-
-
-        public MergeSort(int[] mainArray, Graphics g, int MaxVal)
+        public QuickSort(int[] mainArray, Graphics g, int MaxVal)
         {
             this.mainArray = mainArray;
             this.g = g;
@@ -44,69 +41,54 @@ namespace SortVisualizer
 
         public void nextStep()
         {
-            mergeSort(mainArray, 0, mainArray.Count() - 1);
-        }
-
-        private void mergeSort(int[] mainArray, int lo, int hi)
-        {
-            if (lo < hi)
+            for (int i = 1; i < mainArray.Count(); i++)
             {
-                int middle = (lo + hi) / 2;
-
-
-                mergeSort(mainArray, lo, middle);
-                mergeSort(mainArray, middle + 1, hi);
-
-                Merge(mainArray, lo, middle, hi);
-            }
-        }
-    
-        
-
-        private void Merge(int[] mainArray, int lo, int middle, int hi)
-        {
-            int[] leftArray = new int[middle - lo + 1];
-            int[] rightArray = new int[hi - middle];
-
-            Array.Copy(mainArray, lo, leftArray, 0, middle - lo + 1);
-            Array.Copy(mainArray, middle + 1, rightArray, 0, hi - middle);
-
-            int i = 0;
-            int j = 0;
-            for (int k = lo; k < hi + 1; k++)
-            {
-                if (i == leftArray.Length)
-                {
-                    mainArray[k] = rightArray[j];
-                    drawBar(k, mainArray[k]);
-                    System.Threading.Thread.Sleep(1);
-                    j++;
-                }
-                else if (j == rightArray.Length)
-                {
-                    mainArray[k] = leftArray[i];
-                    drawBar(k, mainArray[k]);
-                    System.Threading.Thread.Sleep(1);
-                    i++;
-                }
-                else if (leftArray[i] <= rightArray[j])
-                {
-                    mainArray[k] = leftArray[i];
-                    drawBar(k, mainArray[k]);
-                    System.Threading.Thread.Sleep(1);
-                    i++;
-                }
-                else
-                {
-                    mainArray[k] = rightArray[j];
-                    drawBar(k, mainArray[k]);
-                    System.Threading.Thread.Sleep(1);
-                    j++;
-                }
+                quickSort(mainArray, 0, mainArray.Count() - 1);
             }
         }
 
-        /*private void slide(int[] mainArray, int loc)
+        private void quickSort(int[] mainArray, int left, int right)
+        {
+            int i;
+            if (left < right)
+            {
+                i = partition(mainArray, left, right);
+
+                quickSort(mainArray, left, i - 1);
+                quickSort(mainArray, i + 1, right);
+            }
+        }
+
+        private int partition(int[] mainArray, int left, int right)
+        {
+            int temp;
+            int p = mainArray[right];
+            int i = left - 1;
+
+            for (int j = left; j <= right - 1; j++)
+            {
+                if (mainArray[j] <= p)
+                {
+                    i++;
+                    temp = mainArray[i];
+                    mainArray[i] = mainArray[j];
+                    drawBar(i, mainArray[i]);
+                    mainArray[j] = temp;
+                    drawBar(j, mainArray[j]);
+                    System.Threading.Thread.Sleep(1);
+                }
+            }
+
+            temp = mainArray[i + 1];
+            mainArray[i + 1] = mainArray[right];
+            drawBar(i+1, mainArray[i+1]);
+            mainArray[right] = temp;
+            drawBar(right, mainArray[right]);
+            System.Threading.Thread.Sleep(1);
+            return i + 1;
+        }
+
+        private void slide(int[] mainArray, int loc)
         {
             int temp = mainArray[loc];
             int j = loc;
@@ -119,7 +101,7 @@ namespace SortVisualizer
             mainArray[j] = temp;
             drawBar(j, temp);
 
-        }*/
+        }
 
         public void reDraw()
         {
@@ -132,11 +114,10 @@ namespace SortVisualizer
         {
             for (int i = 0; i < (mainArray.Count() - 1); i++)
             {
-                g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.Purple), i, MaxVal - mainArray[i], 1, MaxVal);
+                g.FillRectangle(new System.Drawing.SolidBrush(System.Drawing.Color.White), i, MaxVal - mainArray[i], 1, MaxVal);
                 System.Threading.Thread.Sleep(1);
             }
 
         }
-
     }
 }
