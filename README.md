@@ -15,19 +15,19 @@ More algorithms to be added in the future!
 </br>
 ### Merge Sort
 
-![Merge Sort Visualization](MergeSort.gif)
+![Merge Sort Visualization](./resources/MergeSort.gif)
 
 
 ### Insertion Sort
 
-![Insertion Sort Visualization](InsertionSort.gif)
+![Insertion Sort Visualization](./resources/InsertionSort.gif)
 
 
 
 ### Selection Sort
 
 
-![Selection Sort Visualization](SelectionSort.gif)
+![Selection Sort Visualization](./resources/SelectionSort.gif)
 
 
 
@@ -35,4 +35,4 @@ More algorithms to be added in the future!
 ### Bubble Sort
 
 
-![Bubble Sort Visualization](BubbleSort.gif)
+![Bubble Sort Visualization](./resources/BubbleSort.gif)

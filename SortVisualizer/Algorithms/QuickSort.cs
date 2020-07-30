@@ -61,30 +61,34 @@ namespace SortVisualizer
 
         private int partition(int[] mainArray, int left, int right)
         {
-            int temp;
-            int p = mainArray[right];
-            int i = left - 1;
+            int pivot = mainArray[right];
 
-            for (int j = left; j <= right - 1; j++)
+            // index of smaller element 
+            int i = (left - 1);
+            for (int j = left; j < right; j++)
             {
-                if (mainArray[j] <= p)
+                // If current element is smaller  
+                // than the pivot 
+                if (mainArray[j] < pivot)
                 {
                     i++;
-                    temp = mainArray[i];
+
+                    // swap arr[i] and arr[j] 
+                    int temp = mainArray[i];
                     mainArray[i] = mainArray[j];
                     drawBar(i, mainArray[i]);
                     mainArray[j] = temp;
                     drawBar(j, mainArray[j]);
-                    System.Threading.Thread.Sleep(1);
                 }
             }
 
-            temp = mainArray[i + 1];
+            // swap arr[i+1] and arr[high] (or pivot) 
+            int temp1 = mainArray[i + 1];
             mainArray[i + 1] = mainArray[right];
             drawBar(i+1, mainArray[i+1]);
-            mainArray[right] = temp;
+            mainArray[right] = temp1;
             drawBar(right, mainArray[right]);
-            System.Threading.Thread.Sleep(1);
+
             return i + 1;
         }
 
